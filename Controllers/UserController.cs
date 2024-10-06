@@ -21,11 +21,13 @@ namespace CRUD.Controllers
 
         // GET ALL Users
         // GET api/Users
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {     
              return Ok(await _context.Users.ToListAsync());
         }
+
 
 
         // Get a specific user
@@ -42,6 +44,7 @@ namespace CRUD.Controllers
 
             return user;
         }
+
 
 
 
@@ -108,14 +111,6 @@ namespace CRUD.Controllers
         {
             return _context.Users.Any(e => e.Id == id);
         }
-
-
-
-
-
-
-
-
 
 
 
