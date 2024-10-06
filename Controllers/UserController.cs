@@ -21,7 +21,6 @@ namespace CRUD.Controllers
 
         // GET ALL Users
         // GET api/Users
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {     
@@ -41,7 +40,6 @@ namespace CRUD.Controllers
             {
                 return NotFound();
             }
-
             return user;
         }
 
@@ -51,10 +49,8 @@ namespace CRUD.Controllers
         // add a new user
         // POST api/Users
         [HttpPost]
-
         public async Task<ActionResult<User>> PostUser(User user)
         {
-
             // check if the user provided data or not
             if (user == null)
             {
@@ -65,7 +61,6 @@ namespace CRUD.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetUsers), new { id = user.Id }, user);
-
         }
 
 
@@ -84,11 +79,9 @@ namespace CRUD.Controllers
             // Update user data
             userInDb.Username = user.Username;
 
-
             try
             {
                 await _context.SaveChangesAsync();
-                
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -102,18 +95,15 @@ namespace CRUD.Controllers
                     throw;
                 }
             }
-
             return Ok(user);
         }
-
 
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
 
-
-
-
+        // Delete a specific user
+         // 
     }
 }
