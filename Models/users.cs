@@ -7,6 +7,8 @@ namespace crud.Models
         public int Id { get; set; }
 
         [Required] public string Username { get; set; } = string.Empty;
-        
+
+        public DateTime CreatedTimestamp { get; set; }
+
     }
 }
