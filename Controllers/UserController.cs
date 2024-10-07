@@ -98,12 +98,33 @@ namespace CRUD.Controllers
             return Ok(user);
         }
 
+
+        // check if the user still exist or not
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
 
-        // Delete a specific user
-         // 
+
+
+        // delete a specific user
+        // DELETE api/Users/{id}
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NoContent();
+            }
+
+             _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
     }
 }
